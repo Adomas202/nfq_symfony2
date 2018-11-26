@@ -10,14 +10,14 @@
     </div>
 
     <div>
-        Vardas:
+        <label>Vardas:</label>
         <input type="text" id="name"/>
-        <span id="validation-result" data-path="{{ path('validatePerson', {'element': 'name'}) }}"></span>
+        <span id="validation-name" data-path="{{ path('validatePerson', {'element': 'name'}) }}"></span>
     </div>
     <div>
-        Komanda:
-        <input type="text" id="name"/>
-        <span id="validation-result" data-path="{{ path('validatePerson', {'element': 'name'}) }}"></span>
+        <label>Projektas:</label>
+        <input type="text" id="team"/>
+        <span id="validation-team" data-path="{{ path('validatePerson', {'element': 'team'}) }}"></span>
     </div>
 {% endblock %}
 
