@@ -8,16 +8,15 @@
     <div>
         Versijuojamas JavaScript failas: <b id="versionedFile">...</b>
     </div>
-
     <div>
-        <label>Vardas:</label>
+        <label for="name">Vardas:</label>
         <input type="text" id="name"/>
-        <span id="validation-name" data-path="{{ path('validatePerson', {'element': 'name'}) }}"></span>
+        <span id="validation-name" data-path="{{ path('validate', {'element': 'name'}) }}"/>
     </div>
     <div>
-        <label>Projektas:</label>
+        <label for="team">Projektas:</label>
         <input type="text" id="team"/>
-        <span id="validation-team" data-path="{{ path('validatePerson', {'element': 'team'}) }}"></span>
+        <span id="validation-team" data-path="{{ path('validate', {'element': 'team'}) }}"/>
     </div>
 {% endblock %}
 

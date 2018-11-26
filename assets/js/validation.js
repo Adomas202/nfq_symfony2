@@ -8,7 +8,7 @@ let validationResultTeam = document.getElementById('validation-team');
 
 const validate = (validationResult) => {
     validationResult.innerText = '...';
-    axios.post(validationResult.dataset.path, {input: name.value})
+    axios.post(validationResult.dataset.path, {name: name.value, team: team.value})
         .then(function(response) {
             if (response.data.valid) {
                 validationResult.innerHTML = ":)";

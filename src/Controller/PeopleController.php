@@ -22,21 +22,31 @@ class PeopleController extends AbstractController
     }
 
     /**
-     * @Route("/validate/{element}", name="validatePerson")
+     * @Route("/validate/{element}", name="validate")
      * @Method({"POST"})
+     * @param Request $request
+     * @param $element
+     * @return JsonResponse
      */
     public function validate(Request $request, $element)
     {
         try {
-            $input = json_decode($request->getContent(), true)['input'];
+            $inputName = json_decode($request->getContent(), true)['name'];
+            $inputTeam = json_decode($request->getContent(), true)['team'];
         } catch (\Exception $e) {
             return new JsonResponse(['error' => 'Invalid method'], Response::HTTP_BAD_REQUEST);
         }
 
         $students = $this->getStudents();
+        $teams = $this->getTeams();
+
         switch ($element) {
             case 'name':
-                return new JsonResponse(['valid' => in_array(strtolower($input), $students)]);
+                return new JsonResponse(['valid' => in_array(strtolower($inputName), $students)]);
+                break;
+            case 'team':
+                return new JsonResponse(['valid' => in_array(strtolower($inputTeam), $teams)]);
+                break;
         }
 
         return new JsonResponse(['error' => 'Invalid method'], Response::HTTP_BAD_REQUEST);
@@ -120,5 +130,14 @@ class PeopleController extends AbstractController
             }
         }
         return $students;
+    }
+    private function getTeams(): array
+    {
+        $teams = [];
+        $storage = json_decode($this->getStorage(), true);
+        foreach ($storage as $teamName => $data) {
+            $teams[] = strtolower($teamName);
+        }
+        return $teams;
     }
 }
